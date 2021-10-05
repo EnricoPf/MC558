@@ -12,7 +12,7 @@ hismael.costa@gmail.com
 #include <fstream>
 #include <sstream>
 #include <string>
-
+#include "trilha_euleriana_ra233895.h"
 using namespace std;
 
 // Implementação de grafo utilizando lista de adjacência
@@ -112,7 +112,7 @@ int main(){
 
 	Grafo grafo = criarGrafo(file);
 
-    trilha_euleriana(int n, int m, int origem[], int destino[], int trilha[], string mensagem, int RA)
+    trilha_euleriana(int n, int m, int origem[], int destino[], int trilha[], string mensagem, int RA);
 
     if (RA == -1){
         cout<<"Erro: RA informado eh invalido."<<endl;

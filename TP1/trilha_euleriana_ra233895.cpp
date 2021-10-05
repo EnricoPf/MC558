@@ -6,12 +6,9 @@
 #include <string>
 using namespace std;
 
-class Node {
-   public:
-      double length;   // Length of a box
-      double breadth;  // Breadth of a box
-      double height;   // Height of a box
-};
+bool trilha_euleriana(int n, int m, int origem[], int destino[], int trilha[], string mensagem, int RA){
+   return 0;
+}
 
 int main() {
    
