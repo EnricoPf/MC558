@@ -12,6 +12,7 @@ hismael.costa@gmail.com
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <limits.h>
 
 using namespace std;
 
@@ -103,25 +104,27 @@ Grafo criarGrafo(string file){
 }
 
 int main(){
-    string file = "nome-do-arquivo.txt";
+    string file = "grafo1.txt";
 
 	Grafo grafo = criarGrafo(file);
 
     //Inicializem as variáveis
-    int origem[]; // Lista contendo os vértices de origem de cada aresta na trilha.
-    int destino[]; // Lista contendo os vértices de destino de cada aresta na trilha.
-    int trilha[]; // Lista contendo a ordem dos vértices na trilha.
+    int origem[999]; // Lista contendo os vértices de origem de cada aresta na trilha.
+    int destino[999]; // Lista contendo os vértices de destino de cada aresta na trilha.
+    int trilha[999]; // Lista contendo a ordem dos vértices na trilha.
     string mensagem; // String que retorna algum erro no momento da criação da trilha.
     int RA = -1; // RA do aluno que deve ser preenchido na função que irá criar.
 
-    trilha_euleriana(n, m, grafo, origem, destino, trilha, mensagem, RA);
+    //trilha_euleriana(n, m, grafo, origem, destino, trilha, mensagem, RA);
 
     if (RA == -1){
         cout<<"Erro: RA informado eh invalido."<<endl;
     }
-
-    if (verificarTrilha(n, m, origem, destino, grafo)){
+    
+    //cout<<"Test1";
+    //n/V - vertices, m/M - arestas
+    /*if (verificarTrilha(grafo.V, grafo.M, origem, destino, grafo)){
         // Mostrar a trilha gerada
-    }
+    }*/
 	return 0;
 }
