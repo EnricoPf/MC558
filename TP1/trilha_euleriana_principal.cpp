@@ -5,6 +5,7 @@ Arquio principal para a execução do primeiro trabalho prático de MC558.
 Qulquer dúvida ou problema com o código, mandar um e-mail para:
 hismael.costa@gmail.com
 */
+#include <trilha_euleriana_ra233895.h>
 
 #include <iostream>
 #include <list>
@@ -115,13 +116,12 @@ int main(){
     string mensagem; // String que retorna algum erro no momento da criação da trilha.
     int RA = -1; // RA do aluno que deve ser preenchido na função que irá criar.
 
-    //trilha_euleriana(n, m, grafo, origem, destino, trilha, mensagem, RA);
+    trilha_euleriana(grafo.V, grafo.M, origem, destino, trilha, mensagem, RA);
 
     if (RA == -1){
         cout<<"Erro: RA informado eh invalido."<<endl;
     }
     
-    //cout<<"Test1";
     //n/V - vertices, m/M - arestas
     /*if (verificarTrilha(grafo.V, grafo.M, origem, destino, grafo)){
         // Mostrar a trilha gerada
