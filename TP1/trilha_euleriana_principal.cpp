@@ -12,14 +12,14 @@ hismael.costa@gmail.com
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "trilha_euleriana_ra233895.h"
+
 using namespace std;
 
 // Implementação de grafo utilizando lista de adjacência
 class Grafo{
-	list<int> *vizinhos; // Lista contendo as arestas
 
 public:
+    list<int> *vizinhos; // Lista contendo as arestas
 	int V; // Quantidade de vértices
     int M; // Quantidade de arestas
 
@@ -104,15 +104,17 @@ Grafo criarGrafo(string file){
 
 int main(){
     string file = "nome-do-arquivo.txt";
+
+	Grafo grafo = criarGrafo(file);
+
+    //Inicializem as variáveis
     int origem[]; // Lista contendo os vértices de origem de cada aresta na trilha.
     int destino[]; // Lista contendo os vértices de destino de cada aresta na trilha.
     int trilha[]; // Lista contendo a ordem dos vértices na trilha.
     string mensagem; // String que retorna algum erro no momento da criação da trilha.
     int RA = -1; // RA do aluno que deve ser preenchido na função que irá criar.
 
-	Grafo grafo = criarGrafo(file);
-
-    trilha_euleriana(int n, int m, int origem[], int destino[], int trilha[], string mensagem, int RA);
+    trilha_euleriana(n, m, grafo, origem, destino, trilha, mensagem, RA);
 
     if (RA == -1){
         cout<<"Erro: RA informado eh invalido."<<endl;
