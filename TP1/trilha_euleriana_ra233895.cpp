@@ -43,6 +43,8 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
    //n - numero de vertices, m - numero de arestas
 
   //se existir u e V(G) tal que grau de entrada de u != grau de saida, mostrar "Erro: Existe vértice inviável." e interromper execução
+   int i,j;
+
   //se G não for fortemente conexo, mostrar "Erro: Grafo não eh fortemente conexo." e interromper conexão
   //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em trilha linear
   return 0;
