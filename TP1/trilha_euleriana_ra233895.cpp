@@ -12,7 +12,6 @@ bool trilha_euleriana(int n, int m, int origem[], int destino[], int trilha[], s
    return 0;
 }
 
-int main() {
-   
+int main() {   
    return 0;
 }
