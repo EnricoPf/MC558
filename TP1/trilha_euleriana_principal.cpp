@@ -114,9 +114,9 @@ int main(){
     int destino[999]; // Lista contendo os vértices de destino de cada aresta na trilha.
     int trilha[999]; // Lista contendo a ordem dos vértices na trilha.
     string mensagem; // String que retorna algum erro no momento da criação da trilha.
-    int RA = -1; // RA do aluno que deve ser preenchido na função que irá criar.
+    int RA = 233895; // RA do aluno que deve ser preenchido na função que irá criar.
 
-    trilha_euleriana(grafo.V, grafo.M, origem, destino, trilha, mensagem, RA);
+    trilha_euleriana(grafo.V, grafo.M, grafo, origem, destino, trilha, mensagem, RA);
 
     if (RA == -1){
         cout<<"Erro: RA informado eh invalido."<<endl;

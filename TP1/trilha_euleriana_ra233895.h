@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 
-bool trilha_euleriana(int n, int m, int origem[], int destino[], int trilha[], string mensagem, int RA);
+class Grafo;
+
+bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int trilha[], string mensagem, int RA);
 
 #endif
