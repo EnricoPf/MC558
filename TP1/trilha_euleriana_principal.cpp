@@ -5,9 +5,12 @@ Arquio principal para a execução do primeiro trabalho prático de MC558.
 Qulquer dúvida ou problema com o código, mandar um e-mail para:
 hismael.costa@gmail.com
 */
-#include <trilha_euleriana_ra233895.h>
 
 #include <iostream>
+
+#include <trilha_euleriana_ra233895.h>
+
+
 #include <list>
 #include <algorithm>
 #include <fstream>

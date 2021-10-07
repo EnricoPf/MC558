@@ -1,10 +1,21 @@
-#ifndef trilha_euleriana_ra233895.h  
-#define trilha_euleriana_ra233895.h
+#ifndef trilha_euleriana_ra233895
+#define trilha_euleriana_ra233895
 
-#include <iostream>
-#include <string>
+#include <string.h>
+#include <stdbool.h>
 
-class Grafo;
+
+class Grafo{
+
+public:
+    list<int> *vizinhos; // Lista contendo as arestas
+	int V; // Quantidade de vértices
+    int M; // Quantidade de arestas
+
+	Grafo(int V, int M); 
+	void adicionarAresta(int v1, int v2);
+	bool existeAresta(int v1, int v2); 
+};
 
 bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int trilha[], string mensagem, int RA);
 
