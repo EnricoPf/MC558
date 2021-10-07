@@ -20,37 +20,6 @@ hismael.costa@gmail.com
 
 using namespace std;
 
-// Implementação de grafo utilizando lista de adjacência
-class Grafo{
-
-public:
-    list<int> *vizinhos; // Lista contendo as arestas
-	int V; // Quantidade de vértices
-    int M; // Quantidade de arestas
-
-	Grafo(int V, int M); 
-	void adicionarAresta(int v1, int v2); 
-	bool existeAresta(int v1, int v2); 
-};
-
-Grafo::Grafo(int V, int M){
-	this->V = V; 
-    this->M = M;
-	vizinhos = new list<int>[V]; 
-}
-
-// Criação da aresta (v1, v2) em G.
-void Grafo::adicionarAresta(int v1, int v2){
-	vizinhos[v1].push_back(v2);
-}
-
-// Verifica se existe aresta (v1, v2) em G e retorna true se existe e false caso contrário.
-bool Grafo::existeAresta(int v1, int v2){
-	if(find(vizinhos[v1].begin(), vizinhos[v1].end(), v2) != vizinhos[v1].end())
-		return true;
-	return false;
-}
-
 // Verifica se a trilha que o algoritmo encontrou é uma trilha euleriana.
 bool verificarTrilha(int n, int m, int origem[], int destino[], Grafo g1){
 

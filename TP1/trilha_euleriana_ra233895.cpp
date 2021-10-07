@@ -8,19 +8,6 @@
 #include <string>
 using namespace std;
 
-class Grafo
-{
-
-public:
-    list<int> *vizinhos; // Lista contendo as arestas
-    int V;               // Quantidade de vértices
-    int M;               // Quantidade de arestas
-
-    Grafo(int V, int M);
-    void adicionarAresta(int v1, int v2);
-    bool existeAresta(int v1, int v2);
-};
-
 Grafo::Grafo(int V, int M)
 {
     this->V = V;
@@ -54,21 +41,16 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
 
     for (int i = 0; i < n; i++){
         j = G.vizinhos[i].begin();
-        while (*j != NULL){
+        while (!*j){
             origem[k] = i;
             destino[k] = *j;
             k++;
             ++j;
         }
     }
-    cout<<'Chegou aqui\n';
+    cout<<"Chegou aqui\n";
 
     //se G não for fortemente conexo, mostrar "Erro: Grafo não eh fortemente conexo." e interromper conexão
     //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em trilha linear
-    return 0;
-}
-
-int main()
-{
     return 0;
 }
