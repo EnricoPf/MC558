@@ -29,16 +29,13 @@ bool Grafo::existeAresta(int v1, int v2)
     return false;
 }
 
-bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int trilha[], string mensagem, int RA)
-{
-    cout<<"Chegou aqui, n = " << n << endl;
+bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int trilha[], string mensagem, int RA){
     //n - numero de vertices, m - numero de arestas
-    //se existir u e V(G) tal que grau de entrada de u != grau de saida, mostrar "Erro: Existe vértice inviável." e interromper execução
+    //se existir u e V(G) tal que grau de entrada de u != grau de saida, mostrar "Erro: Existe vértice inviável." e interromper execução    
+    cout<<"Chegou aqui, n = " << n << endl;
     int i;
     list<int>::iterator j;
-    int k;
-    k = 0;
-
+    int k = 0;
     for (int i = 0; i < n; i++){
         j = G.vizinhos[i].begin();
         while (j!= G.vizinhos[i].end()){
