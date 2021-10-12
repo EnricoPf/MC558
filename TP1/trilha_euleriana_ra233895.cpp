@@ -60,6 +60,6 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
     }
     //se G não for fortemente conexo, mostrar "Erro: Grafo não eh fortemente conexo." e interromper conexão
 
-    //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em trilha linear
+    //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
     return 0;
 }
