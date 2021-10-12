@@ -31,16 +31,17 @@ bool Grafo::existeAresta(int v1, int v2)
 
 bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int trilha[], string mensagem, int RA){
     //n - numero de vertices, m - numero de arestas
-    //se existir u e V(G) tal que grau de entrada de u != grau de saida, mostrar "Erro: Existe vértice inviável." e interromper execução    
     cout<<"Chegou aqui, n = " << n << endl;
-    int i;
     list<int>::iterator j;
     int k = 0;
+    int saida[m], entrada[m];
     for (int i = 0; i < n; i++){
         j = G.vizinhos[i].begin();
         while (j!= G.vizinhos[i].end()){
             origem[k] = i;
+            saida[i]++;
             destino[k] = *j;
+            entrada[*j]++;
             k++;
             ++j;
         }
@@ -49,8 +50,16 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
     for (int a = 0; a < k; a++){
         cout<<origem[a] << ' ' << destino[a] << endl;
     }
-
+    //se existir u e V(G) tal que grau de entrada de u != grau de saida, mostrar "Erro: Existe vértice inviável." e interromper execução    
+    for (int i = 0; i < n; i++){
+        if (entrada[i] != saida[i]){
+            mensagem = "Erro: Existe vértice inviável.";
+            cout << mensagem << endl;
+            return false;
+        }
+    }
     //se G não for fortemente conexo, mostrar "Erro: Grafo não eh fortemente conexo." e interromper conexão
+
     //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em trilha linear
     return 0;
 }
