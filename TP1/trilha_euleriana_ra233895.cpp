@@ -46,7 +46,7 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
             ++j;
         }
     }
-    cout<<"Chegou aqui, k = " << k << endl;
+    cout << "Chegou aqui, k = " << k << endl;
     for (int a = 0; a < k; a++){
         cout<<origem[a] << ' ' << destino[a] << endl;
     }
