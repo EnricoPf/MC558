@@ -77,7 +77,7 @@ Grafo criarGrafo(string file){
 }
 
 int main(){
-    string file = "grafo1.txt";
+    string file = "grafo3.txt";
 
 	Grafo grafo = criarGrafo(file);
 

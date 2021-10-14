@@ -7,6 +7,7 @@
 #include <sstream>
 #include <string>
 #include <stack>
+#include <vector>
 using namespace std;
 
 Grafo::Grafo(int V, int M)
@@ -55,20 +56,20 @@ Grafo obterGrafoTransposto(Grafo G){
     return grafo_transposto;
 }
 
-void DFS(Grafo G, int v, bool visitados[]){
+void DFS(Grafo G, int v, bool visitados[], vector<int> &vect){
     visitados[v] = true;
-    cout << v << " ";
+    vect.push_back(v);
     list<int>::iterator i;
     for (i = G.vizinhos[v].begin(); i != G.vizinhos[v].end(); i++){
         if (visitados[*i] == false)
-            DFS(G, *i, visitados);
+            DFS(G, *i, visitados, vect);
     }
 }
 
-void imprimirComponentes(Grafo G){
+bool testaComponentes(Grafo G){
     stack<int> pilha;
     bool *visitados = new bool[G.V];
-
+    vector<int> componentes;
     for (int i = 0; i < G.V; i++){
         visitados[i] = false;
     }
@@ -77,37 +78,27 @@ void imprimirComponentes(Grafo G){
             preenche(G, i, visitados, pilha);
         }
     }
-
-    // cria o grafo transposto
     Grafo gt = obterGrafoTransposto(G);
-
-    // marca todos como não visitados novamente
     for (int i = 0; i < G.V; i++)
         visitados[i] = false;
-
-    // processa os vértices de acordo com a pilha
-    while (!pilha.empty())
-    {
-        // obtém o elemento do topo
+    while (!pilha.empty()){
         int v = pilha.top();
-
-        // remove o elemento
         pilha.pop();
-
         // imprime cada componente fortemente conexa
-        if (visitados[v] == false)
-        {
-            DFS(gt, v, visitados);
-            cout << "\n";
+        if (visitados[v] == false){
+            DFS(gt, v, visitados, componentes);
+            //aqui ele trocaria de linha
         }
     }
+    if ((componentes.size()) == G.V)
+        return true;
+    return false;
 }
 
 //#-------------------------------------------------------------------------#
 
 bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int trilha[], string mensagem, int RA){
     //n - numero de vertices, m - numero de arestas
-    cout<<"Chegou aqui, n = " << n << endl;
     list<int>::iterator j;
     int k = 0;
     int saida[m], entrada[m];
@@ -122,19 +113,28 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
             ++j;
         }
     }
-    cout << "Chegou aqui, k = " << k << endl;
+    /* Trecho pra imprimir as arestars - DEBUG
     for (int a = 0; a < k; a++){
         cout<<origem[a] << ' ' << destino[a] << endl;
-    }
+    }*/
+
     //se existir u e V(G) tal que grau de entrada de u != grau de saida, mostrar "Erro: Existe vértice inviável." e interromper execução    
-    for (int i = 0; i < n; i++){
+    /*for (int i = 0; i < n; i++){
         if (entrada[i] != saida[i]){
             mensagem = "Erro: Existe vértice inviável.";
             cout << mensagem << endl;
             return false;
         }
-    }
+    }*/
+
     //se G não for fortemente conexo, mostrar "Erro: Grafo não eh fortemente conexo." e interromper conexão
+    cout << "Chegou aqui banana1" << endl;
+    if (testaComponentes(G)){
+        cout << "É fortemente conexo" << endl;
+    }else{
+        cout << "Não é fortemente conexo" << endl;
+    }
+    cout << "Chegou aqui banana2" << endl;
 
     //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
     return 0;

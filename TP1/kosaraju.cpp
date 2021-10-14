@@ -125,13 +125,12 @@ void imprimirComponentes(Grafo G)
 
 int main(int argc, char *argv[])
 {
-    Grafo g(5);
+    Grafo g(4);
 
-    /*g.adicionarAresta(0, 1);
+    g.adicionarAresta(0, 1);
     g.adicionarAresta(1, 2);
-    g.adicionarAresta(1, 3);
-    g.adicionarAresta(2, 0);
-    g.adicionarAresta(3, 4);*/
+    g.adicionarAresta(2, 3);
+    g.adicionarAresta(3, 0);
 
     imprimirComponentes(g);
 
