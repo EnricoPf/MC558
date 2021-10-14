@@ -56,20 +56,18 @@ Grafo obterGrafoTransposto(Grafo G){
     return grafo_transposto;
 }
 
-void DFS(Grafo G, int v, bool visitados[], vector<int> &vect){
+void DFS(Grafo G, int v, bool visitados[]){
     visitados[v] = true;
-    vect.push_back(v);
     list<int>::iterator i;
     for (i = G.vizinhos[v].begin(); i != G.vizinhos[v].end(); i++){
         if (visitados[*i] == false)
-            DFS(G, *i, visitados, vect);
+            DFS(G, *i, visitados);
     }
 }
 
 bool testaComponentes(Grafo G){
     stack<int> pilha;
     bool *visitados = new bool[G.V];
-    vector<int> componentes;
     for (int i = 0; i < G.V; i++){
         visitados[i] = false;
     }
@@ -81,16 +79,19 @@ bool testaComponentes(Grafo G){
     Grafo gt = obterGrafoTransposto(G);
     for (int i = 0; i < G.V; i++)
         visitados[i] = false;
+
+    int reis = 0;
     while (!pilha.empty()){
         int v = pilha.top();
         pilha.pop();
         // imprime cada componente fortemente conexa
         if (visitados[v] == false){
-            DFS(gt, v, visitados, componentes);
+            DFS(gt, v, visitados);
             //aqui ele trocaria de linha
+            reis++;
         }
     }
-    if ((componentes.size()) == G.V)
+    if (reis == 1)
         return true;
     return false;
 }
@@ -119,23 +120,20 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
     }*/
 
     //se existir u e V(G) tal que grau de entrada de u != grau de saida, mostrar "Erro: Existe vértice inviável." e interromper execução    
-    /*for (int i = 0; i < n; i++){
+    for (int i = 0; i < n; i++){
         if (entrada[i] != saida[i]){
             mensagem = "Erro: Existe vértice inviável.";
             cout << mensagem << endl;
             return false;
         }
-    }*/
+    }
 
     //se G não for fortemente conexo, mostrar "Erro: Grafo não eh fortemente conexo." e interromper conexão
-    cout << "Chegou aqui banana1" << endl;
-    if (testaComponentes(G)){
-        cout << "É fortemente conexo" << endl;
-    }else{
-        cout << "Não é fortemente conexo" << endl;
+    if (!(testaComponentes(G))){
+        mensagem = "Erro: Grafo não eh fortemente conexo.";
+        cout << mensagem << endl;
+        return false;
     }
-    cout << "Chegou aqui banana2" << endl;
-
     //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
-    return 0;
+    return true;
 }
