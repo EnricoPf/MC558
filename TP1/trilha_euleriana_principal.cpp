@@ -77,7 +77,7 @@ Grafo criarGrafo(string file){
 }
 
 int main(){
-    string file = "grafo1.txt";
+    string file = "grafo3.txt";
 
 	Grafo grafo = criarGrafo(file);
 
@@ -88,15 +88,17 @@ int main(){
     string mensagem; // String que retorna algum erro no momento da criação da trilha.
     int RA = 233895; // RA do aluno que deve ser preenchido na função que irá criar.
 
-    trilha_euleriana(grafo.V, grafo.M, grafo, origem, destino, trilha, mensagem, RA);
+    if(!(trilha_euleriana(grafo.V, grafo.M, grafo, origem, destino, trilha, mensagem, RA))){
+        return 0;
+    }
 
     if (RA == -1){
-        cout<<"Erro: RA informado eh invalido."<<endl;
+        cout << "Erro: RA informado eh invalido." << endl;
     }
-    
     //n/V - vertices, m/M - arestas
-    /*if (verificarTrilha(grafo.V, grafo.M, origem, destino, grafo)){
+    if (verificarTrilha(grafo.V, grafo.M, origem, destino, grafo)){
+        //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
         // Mostrar a trilha gerada
-    }*/
+    }
 	return 0;
 }
