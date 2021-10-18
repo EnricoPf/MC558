@@ -138,5 +138,10 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
         return false;
     }
     //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
+    //usar o vetor trilha, preciso achar uma trilha euleriana ainda
+    bool edge_visited[m];
+    for (int i = 0; i < m; i++){
+        edge_visited[i] = false;
+    }
     return true;
 }
