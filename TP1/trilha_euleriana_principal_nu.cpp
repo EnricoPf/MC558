@@ -108,8 +108,12 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
     //n - numero de vertices, m - numero de arestas
     list<int>::iterator j;    
     int k = 0;
-    int* entrada = (int*) malloc(n*sizeof(int));
-    int* saida = (int*) malloc(n*sizeof(int));
+    int entrada [n];
+    int saida [n];
+    for (int i = 0; i < n; i++){
+        entrada[i] = 0;
+        saida[i] = 0;
+    }
     for (int i = 0; i < n; i++){
         for (j = G.vizinhos[i].begin(); j != G.vizinhos[i].end();j++){
             origem[k] = i;
