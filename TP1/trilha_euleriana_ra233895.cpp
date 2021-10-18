@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <list>
+#include <cstdlib>
 #include <algorithm>
 #include <fstream>
 #include <sstream>
@@ -100,18 +101,21 @@ bool testaComponentes(Grafo G){
 
 bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int trilha[], string mensagem, int RA){
     //n - numero de vertices, m - numero de arestas
-    list<int>::iterator j;
+    list<int>::iterator j;    
     int k = 0;
-    int saida[m], entrada[m];
+    int entrada [n];
+    int saida [n];
     for (int i = 0; i < n; i++){
-        j = G.vizinhos[i].begin();
-        while (j!= G.vizinhos[i].end()){
+        entrada[i] = 0;
+        saida[i] = 0;
+    }
+    for (int i = 0; i < n; i++){
+        for (j = G.vizinhos[i].begin(); j != G.vizinhos[i].end();j++){
             origem[k] = i;
             saida[i]++;
             destino[k] = *j;
             entrada[*j]++;
             k++;
-            ++j;
         }
     }
     /* Trecho pra imprimir as arestars - DEBUG
@@ -127,7 +131,6 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
             return false;
         }
     }
-
     //se G não for fortemente conexo, mostrar "Erro: Grafo não eh fortemente conexo." e interromper conexão
     if (!(testaComponentes(G))){
         mensagem = "Erro: Grafo não eh fortemente conexo.";
