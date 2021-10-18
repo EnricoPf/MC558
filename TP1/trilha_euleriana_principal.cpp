@@ -97,6 +97,7 @@ int main(){
     }
     //n/V - vertices, m/M - arestas
     if (verificarTrilha(grafo.V, grafo.M, origem, destino, grafo)){
+        cout << "Trilha valida possível." << endl;
         //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
         // Mostrar a trilha gerada
     }
