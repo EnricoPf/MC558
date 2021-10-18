@@ -124,14 +124,13 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
     }*/
 
     //se existir u e V(G) tal que grau de entrada de u != grau de saida, mostrar "Erro: Existe vértice inviável." e interromper execução    
-    /*for (int i = 0; i < n; i++){
+    for (int i = 0; i < n; i++){
         if (entrada[i] != saida[i]){
             mensagem = "Erro: Existe vértice inviável.";
             cout << mensagem << endl;
             return false;
         }
-    }*/
-
+    }
     //se G não for fortemente conexo, mostrar "Erro: Grafo não eh fortemente conexo." e interromper conexão
     if (!(testaComponentes(G))){
         mensagem = "Erro: Grafo não eh fortemente conexo.";

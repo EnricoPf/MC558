@@ -136,6 +136,7 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
             return false;
         }
     }
+    return 0;
 }
 
 int main(){
