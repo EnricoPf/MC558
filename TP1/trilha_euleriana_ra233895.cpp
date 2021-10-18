@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <list>
+#include <cstdlib>
 #include <algorithm>
 #include <fstream>
 #include <sstream>
@@ -100,18 +101,17 @@ bool testaComponentes(Grafo G){
 
 bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int trilha[], string mensagem, int RA){
     //n - numero de vertices, m - numero de arestas
-    list<int>::iterator j;
+    list<int>::iterator j;    
     int k = 0;
-    int saida[m], entrada[m];
+    int* entrada = (int*) malloc(n*sizeof(int));
+    int* saida = (int*) malloc(n*sizeof(int));
     for (int i = 0; i < n; i++){
-        j = G.vizinhos[i].begin();
-        while (j!= G.vizinhos[i].end()){
+        for (j = G.vizinhos[i].begin(); j != G.vizinhos[i].end();j++){
             origem[k] = i;
             saida[i]++;
             destino[k] = *j;
             entrada[*j]++;
             k++;
-            ++j;
         }
     }
     /* Trecho pra imprimir as arestars - DEBUG
@@ -120,13 +120,13 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
     }*/
 
     //se existir u e V(G) tal que grau de entrada de u != grau de saida, mostrar "Erro: Existe vértice inviável." e interromper execução    
-    for (int i = 0; i < n; i++){
+    /*for (int i = 0; i < n; i++){
         if (entrada[i] != saida[i]){
             mensagem = "Erro: Existe vértice inviável.";
             cout << mensagem << endl;
             return false;
         }
-    }
+    }*/
 
     //se G não for fortemente conexo, mostrar "Erro: Grafo não eh fortemente conexo." e interromper conexão
     if (!(testaComponentes(G))){
