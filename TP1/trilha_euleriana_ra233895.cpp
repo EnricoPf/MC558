@@ -106,6 +106,10 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
     int entrada [n];
     int saida [n];
     for (int i = 0; i < n; i++){
+        entrada[i] = 0;
+        saida[i] = 0;
+    }
+    for (int i = 0; i < n; i++){
         for (j = G.vizinhos[i].begin(); j != G.vizinhos[i].end();j++){
             origem[k] = i;
             saida[i]++;
