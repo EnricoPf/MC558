@@ -99,6 +99,9 @@ int main(){
         cout << "Trilha valida possível." << endl;
         //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
         // Mostrar a trilha gerada
+        for (int i = 0; i < grafo.M; i++){
+            cout << (i+1) << ' ' << trilha[i] << ' ' << trilha[i+1] << endl;
+        }
     }
 	return 0;
 }

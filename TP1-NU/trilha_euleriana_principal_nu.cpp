@@ -115,8 +115,13 @@ bool testaComponentes(Grafo G){
 //#-------------------------------------------------------------------------#
 
 void find_way(Grafo G, int* trilha){
-    std::list<int> *adj = new list<int>[G.V]; 
-    adj->assign(G.vizinhos->begin(),G.vizinhos->end());
+    list <int>* adj = new list<int>[G.V];
+    list<int>::iterator j;    
+    for (int i = 0; i < G.V; i++){
+        for (j = G.vizinhos[i].begin(); j != G.vizinhos[i].end();j++){
+            adj[i].push_front(*j);
+        }
+    }     
     vector<int> circuit;
     unordered_map<int,int> edge_counter;
     stack<int> curr_trail;
@@ -243,13 +248,6 @@ Grafo criarGrafo(string file){
 
     return grafo;
 }
-void print(std::list<std::string> const &list)
-{
-    for (auto const &i: list) {
-        std::cout << i << std::endl;
-    }
-}
-
 
 int main(){
     string file = "grafo.txt";
@@ -276,6 +274,9 @@ int main(){
         cout << "Trilha valida possível." << endl;
         //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
         // Mostrar a trilha gerada
+        for (int i = 0; i < grafo.M; i++){
+            cout << (i+1) << ' ' << trilha[i] << ' ' << trilha[i+1] << endl;
+        }
     }
 	return 0;
 }
