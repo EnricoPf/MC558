@@ -186,7 +186,7 @@ bool trilha_euleriana(int n, int m, Grafo G, int* origem, int* destino, int* tri
     //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
     //usar o vetor trilha, preciso achar uma trilha euleriana ainda
     find_way(G,trilha);
-    for (int i = 0; i < (G.V);i++){
+    for (int i = 0; i < (G.M);i++){
         origem[i] = trilha[i];
         destino[i] = trilha[i+1];
     }
@@ -250,7 +250,7 @@ Grafo criarGrafo(string file){
 }
 
 int main(){
-    string file = "grafo.txt";
+    string file = "grafo5.txt";
 
 	Grafo grafo = criarGrafo(file);
 

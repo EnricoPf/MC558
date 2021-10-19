@@ -140,19 +140,19 @@ bool trilha_euleriana(int n, int m, Grafo G, int* origem, int* destino, int* tri
     //se existir u e V(G) tal que grau de entrada de u != grau de saida, mostrar "Erro: Existe vértice inviável." e interromper execução    
     for (int i = 0; i < n; i++){
         if (entrada[i] != saida[i]){
-            cout << mensagem << endl;
+            mensagem = "Erro: Existe vértice inviável.";
             return false;
         }
     }
     //se G não for fortemente conexo, mostrar "Erro: Grafo não eh fortemente conexo." e interromper conexão
     if (!(testaComponentes(G))){
-        cout << mensagem << endl;
+        mensagem = "Erro: Grafo não eh fortemente conexo.";
         return false;
     }
     //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
     //usar o vetor trilha, preciso achar uma trilha euleriana ainda
     find_way(G,trilha);
-    for (int i = 0; i < (G.V);i++){
+    for (int i = 0; i < (G.M);i++){
         origem[i] = trilha[i];
         destino[i] = trilha[i+1];
     }
