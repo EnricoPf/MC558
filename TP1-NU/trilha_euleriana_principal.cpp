@@ -7,16 +7,14 @@ hismael.costa@gmail.com
 */
 
 #include <iostream>
-
-#include "trilha_euleriana_ra233895.hpp"
-
-
 #include <list>
 #include <algorithm>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <limits.h>
+#include "grafo.hpp"
+#include "trilha_euleriana_ra233895.hpp"
 
 using namespace std;
 

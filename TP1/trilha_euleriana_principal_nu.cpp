@@ -120,12 +120,12 @@ bool testaComponentes(Grafo G){
 
 //#-------------------------------------------------------------------------#
 void find_way(Grafo G, int* trilha){
-    list <int>* adj = G.vizinhos;
+    list <int>* adj (G.vizinhos);
     vector<int> circuit;
     unordered_map<int,int> edge_counter;
     stack<int> curr_trail;
     int curr_v,next_v;
-    for (int i = 0; i < G.V;i++){
+    for (int i = 0; i < G.M;i++){
         edge_counter[i] = adj[i].size();
     }
     curr_v = 0;
@@ -152,8 +152,7 @@ void find_way(Grafo G, int* trilha){
     return;
 }
 
-
-bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int trilha[], string mensagem, int RA){
+bool trilha_euleriana(int n, int m, Grafo G, int* origem, int* destino, int* trilha, string mensagem, int RA){
     //n - numero de vertices, m - numero de arestas
     list<int>::iterator j;    
     int k = 0;
@@ -190,8 +189,9 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
     //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
     //usar o vetor trilha, preciso achar uma trilha euleriana ainda
     find_way(G,trilha);
-    for (int i = 0; i < (G.V+1);i++){
-        cout << trilha[i];    }
+    for (int i = 0; i < (G.M+1);i++){
+        cout << trilha[i];
+    }
     return true;
 }
 
@@ -254,14 +254,14 @@ Grafo criarGrafo(string file){
 }
 
 int main(){
-    string file = "grafo3.txt";
+    string file = "grafo1.txt";
 
 	Grafo grafo = criarGrafo(file);
 
     //Inicializem as variáveis
     int origem[grafo.M]; // Lista contendo os vértices de origem de cada aresta na trilha.
     int destino[grafo.M]; // Lista contendo os vértices de destino de cada aresta na trilha.
-    int trilha[grafo.V+1]; // Lista contendo a ordem dos vértices na trilha.
+    int trilha[grafo.M+1]; // Lista contendo a ordem dos vértices na trilha.
     string mensagem; // String que retorna algum erro no momento da criação da trilha.
     int RA = 233895; // RA do aluno que deve ser preenchido na função que irá criar.
 
@@ -273,10 +273,13 @@ int main(){
         cout << "Erro: RA informado eh invalido." << endl;
     }
     //n/V - vertices, m/M - arestas
+    //Função verificar trilha não funciona portanto foi ignorada
     if (verificarTrilha(grafo.V, grafo.M, origem, destino, grafo)){
         cout << "Trilha valida possível." << endl;
-        //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
-        // Mostrar a trilha gerada
     }
+
+    //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
+    // Mostrar a trilha gerada
+    
 	return 0;
 }
