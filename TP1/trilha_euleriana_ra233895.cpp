@@ -143,5 +143,24 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
     for (int i = 0; i < m; i++){
         edge_visited[i] = false;
     }
+    int current_edge = 0;
+    k = 0;
+    int target;
+    int i;
+    while (!edge_visited[current_edge]){
+        trilha[k] = current_edge;
+        k++;
+        target = saida[current_edge];
+        i = current_edge;
+        while((entrada[i] != target)&&(edge_visited[i])){
+            i++;
+        }
+        current_edge = i;        
+    }
+
+    for (int i = 0; i < m; i++){
+        cout << trilha[i] << ' ' << entrada[trilha[i]] << ' ' << saida[trilha[i]] << endl;
+    }
+    
     return true;
 }
