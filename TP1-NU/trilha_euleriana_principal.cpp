@@ -85,7 +85,7 @@ int main(){
     int trilha[grafo.M+1]; // Lista contendo a ordem dos vértices na trilha.
     string mensagem; // String que retorna algum erro no momento da criação da trilha.
     int RA = 233895; // RA do aluno que deve ser preenchido na função que irá criar.
-
+    //chama a função trilha_euleriana e se houver erro, imprime a mensagem de erro e encerra programa
     if(!(trilha_euleriana(grafo.V, grafo.M, grafo, origem, destino, trilha, mensagem, RA))){
         cout << mensagem << endl;
         return 0;
@@ -98,7 +98,7 @@ int main(){
     if (verificarTrilha(grafo.V, grafo.M, origem, destino, grafo)){
         cout << "Trilha valida possível." << endl;
         //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
-        // Mostrar a trilha gerada
+        //Mostrar a trilha gerada
         for (int i = 0; i < grafo.M; i++){
             cout << (i+1) << ' ' << trilha[i] << ' ' << trilha[i+1] << endl;
         }
