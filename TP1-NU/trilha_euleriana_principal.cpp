@@ -7,16 +7,14 @@ hismael.costa@gmail.com
 */
 
 #include <iostream>
-
-#include "trilha_euleriana_ra233895.hpp"
-
-
 #include <list>
 #include <algorithm>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <limits.h>
+#include "grafo.hpp"
+#include "trilha_euleriana_ra233895.hpp"
 
 using namespace std;
 
@@ -77,18 +75,19 @@ Grafo criarGrafo(string file){
 }
 
 int main(){
-    string file = "grafo3.txt";
+    string file = "grafo.txt";
 
 	Grafo grafo = criarGrafo(file);
 
     //Inicializem as variáveis
     int origem[grafo.M]; // Lista contendo os vértices de origem de cada aresta na trilha.
     int destino[grafo.M]; // Lista contendo os vértices de destino de cada aresta na trilha.
-    int trilha[grafo.V]; // Lista contendo a ordem dos vértices na trilha.
+    int trilha[grafo.M+1]; // Lista contendo a ordem dos vértices na trilha.
     string mensagem; // String que retorna algum erro no momento da criação da trilha.
     int RA = 233895; // RA do aluno que deve ser preenchido na função que irá criar.
 
     if(!(trilha_euleriana(grafo.V, grafo.M, grafo, origem, destino, trilha, mensagem, RA))){
+        cout << mensagem << endl;
         return 0;
     }
 
@@ -100,6 +99,9 @@ int main(){
         cout << "Trilha valida possível." << endl;
         //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
         // Mostrar a trilha gerada
+        for (int i = 0; i < grafo.M; i++){
+            cout << (i+1) << ' ' << trilha[i] << ' ' << trilha[i+1] << endl;
+        }
     }
 	return 0;
 }

@@ -21,6 +21,6 @@ public:
     bool existeAresta(int v1, int v2);
 };
 
-bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int trilha[], string mensagem, int RA);
+bool trilha_euleriana(int n, int m, Grafo G, int* origem, int* destino, int* trilha, string mensagem, int RA);
 
 #endif
