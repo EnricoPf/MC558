@@ -99,7 +99,41 @@ bool testaComponentes(Grafo G){
 
 //#-------------------------------------------------------------------------#
 
-bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int trilha[], string mensagem, int RA){
+int* find_way(Grafo G){
+    list <int>* adj = G.vizinhos;
+    vector<int> circuit;
+    unordered_map<int,int> edge_counter;
+    stack<int> curr_trail;
+    int curr_v,next_v;
+    for (int i = 0; i < G.V;i++){
+        edge_counter[i] = adj[i].size();
+    }
+    curr_v = 0;
+    curr_trail.push(0);
+    while (!curr_trail.empty()){
+        if (edge_counter[curr_v]){
+            curr_trail.push(curr_v);
+            next_v = adj[curr_v].back();
+            edge_counter[curr_v]--;
+            adj[curr_v].pop_back();  
+            curr_v = next_v;
+        }else{
+            circuit.push_back(curr_v);
+            curr_v = curr_trail.top();
+            curr_trail.pop();
+        }
+    }
+    int k = 0;
+    int trilha[G.V+1];
+    for (int i=circuit.size()-1; i>=0; i--)
+    {
+        trilha[k] = circuit[i];
+        k++;
+    }
+    return trilha;
+}
+
+bool trilha_euleriana(int n, int m, Grafo G, int* origem, int* destino, int* trilha, string mensagem, int RA){
     //n - numero de vertices, m - numero de arestas
     list<int>::iterator j;    
     int k = 0;
@@ -139,28 +173,7 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
     }
     //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
     //usar o vetor trilha, preciso achar uma trilha euleriana ainda
-    bool edge_visited[m];
-    for (int i = 0; i < m; i++){
-        edge_visited[i] = false;
-    }
-    int current_edge = 0;
-    k = 0;
-    int target;
-    int i;
-    while (!edge_visited[current_edge]){
-        trilha[k] = current_edge;
-        k++;
-        target = saida[current_edge];
-        i = current_edge;
-        while((entrada[i] != target)&&(edge_visited[i])){
-            i++;
-        }
-        current_edge = i;        
-    }
+    trilha = find_way(G);
 
-    for (int i = 0; i < m; i++){
-        cout << trilha[i] << ' ' << entrada[trilha[i]] << ' ' << saida[trilha[i]] << endl;
-    }
-    
     return true;
 }

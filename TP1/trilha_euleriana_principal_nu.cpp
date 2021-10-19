@@ -119,6 +119,39 @@ bool testaComponentes(Grafo G){
 }
 
 //#-------------------------------------------------------------------------#
+void find_way(Grafo G, int* trilha){
+    list <int>* adj = G.vizinhos;
+    vector<int> circuit;
+    unordered_map<int,int> edge_counter;
+    stack<int> curr_trail;
+    int curr_v,next_v;
+    for (int i = 0; i < G.V;i++){
+        edge_counter[i] = adj[i].size();
+    }
+    curr_v = 0;
+    curr_trail.push(0);
+    while (!curr_trail.empty()){
+        if (edge_counter[curr_v]){
+            curr_trail.push(curr_v);
+            next_v = adj[curr_v].back();
+            edge_counter[curr_v]--;
+            adj[curr_v].pop_back();  
+            curr_v = next_v;
+        }else{
+            circuit.push_back(curr_v);
+            curr_v = curr_trail.top();
+            curr_trail.pop();
+        }
+    }
+    int k = 0;
+    for (int i=circuit.size()-1; i>=0; i--)
+    {
+        trilha[k] = circuit[i];
+        k++;
+    }
+    return;
+}
+
 
 bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int trilha[], string mensagem, int RA){
     //n - numero de vertices, m - numero de arestas
@@ -156,27 +189,13 @@ bool trilha_euleriana(int n, int m, Grafo G, int origem[], int destino[], int tr
     }
     //caso nenhum dos dois, imprimir uma trilha fechada euleriana começando e terminando em v, construida em tempo linear
     //usar o vetor trilha, preciso achar uma trilha euleriana ainda
-    vector<bool> edge_visited(m, false);
-
-    int current_edge = 0;
-
-
-    for (int i = 0; i < m; i++){
-        cout << trilha[i] << ' ' << entrada[trilha[i]] << ' ' << saida[trilha[i]] << endl;
-    }
-    
+    find_way(G,trilha);
+    for (int i = 0; i < (G.V+1);i++){
+        cout << trilha[i];    }
     return true;
 }
 
-void find_path(int v, Grafo G, int* trilha[], int* edge_visited[]){
-    list<int>::iterator i;
-    for (i = G.vizinhos[i].begin(); i != G.vizinhos[i].end(); i++){
-        if (edge_visited[i] == true){
-            continue;
-        }
-    }
 
-}
 
 // Verifica se a trilha que o algoritmo encontrou é uma trilha euleriana.
 bool verificarTrilha(int n, int m, int origem[], int destino[], Grafo g1){
@@ -242,7 +261,7 @@ int main(){
     //Inicializem as variáveis
     int origem[grafo.M]; // Lista contendo os vértices de origem de cada aresta na trilha.
     int destino[grafo.M]; // Lista contendo os vértices de destino de cada aresta na trilha.
-    int trilha[grafo.M]; // Lista contendo a ordem dos vértices na trilha.
+    int trilha[grafo.V+1]; // Lista contendo a ordem dos vértices na trilha.
     string mensagem; // String que retorna algum erro no momento da criação da trilha.
     int RA = 233895; // RA do aluno que deve ser preenchido na função que irá criar.
 
