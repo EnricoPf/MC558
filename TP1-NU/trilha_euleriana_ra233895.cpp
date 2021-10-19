@@ -81,7 +81,13 @@ bool testaComponentes(Grafo G){
 //#-------------------------------------------------------------------------#
 
 void find_way(Grafo G, int* trilha){
-    list <int>* adj = G.vizinhos;
+    list <int>* adj = new list<int>[G.V];
+    list<int>::iterator j;    
+    for (int i = 0; i < G.V; i++){
+        for (j = G.vizinhos[i].begin(); j != G.vizinhos[i].end();j++){
+            adj[i].push_front(*j);
+        }
+    }     
     vector<int> circuit;
     unordered_map<int,int> edge_counter;
     stack<int> curr_trail;
