@@ -128,9 +128,11 @@ void find_way(Grafo G, int* trilha){
         }
     }
     //desinverte a ordem de circuito e passa para o vetor trilha
+    int k = 0;
     for (int i=circuit.size()-1; i>=0; i--)
     {
         trilha[k] = circuit[i];
+        k++;
     }
     return;
 }
