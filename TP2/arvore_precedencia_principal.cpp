@@ -56,7 +56,7 @@ int main(){
     int pred[grafo.V]; // Lista contendo os vértices antes de v na árvore de precedência;
     int dist[grafo.M]; // Lista contendo a distância de s para v;
     string mensagem; // String que retorna algum erro no momento da criação da trilha.
-    int RA = -1; // RA do aluno que deve ser preenchido na função que irá criar.
+    int RA = 233895; // RA do aluno que deve ser preenchido na função que irá criar.
 
     bool tem_arvore = arvore_precedencia(grafo.V, grafo.M, grafo.W, grafo, &mensagem, RA, dist, pred);
 
