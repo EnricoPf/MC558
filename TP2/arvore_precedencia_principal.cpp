@@ -12,7 +12,7 @@ hismael.costa@gmail.com
 #include <sstream>
 #include <string>
 #include "grafo.hpp"
-
+#include "arvore_precedencia_ra233895.hpp"
 using namespace std;
 
 // Leitura de um arquivo txt e retorno do grafo descrito neste arquivo.
@@ -53,8 +53,8 @@ int main(){
 	Grafo grafo = criarGrafo(file);
 
     //Inicializem as variáveis
-    int pred[]; // Lista contendo os vértices antes de v na árvore de precedência;
-    int dist[]; // Lista contendo a distância de s para v;
+    int pred[grafo.V]; // Lista contendo os vértices antes de v na árvore de precedência;
+    int dist[grafo.M]; // Lista contendo a distância de s para v;
     string mensagem; // String que retorna algum erro no momento da criação da trilha.
     int RA = -1; // RA do aluno que deve ser preenchido na função que irá criar.
 
