@@ -3,19 +3,17 @@
 
 using namespace std;
 
-#include <list>
-
 class Grafo{
 
 public:
-    std::list<int> *vizinhos; // Lista contendo as arestas
+    list<pair<int, int> > * adj; // Lista contendo as arestas
 	int V; // Quantidade de vértices
     int M; // Quantidade de arestas
+	int W;
 
     Grafo();
-	Grafo(int V, int M); 
-	void adicionarAresta(int v1, int v2); 
-	bool existeAresta(int v1, int v2); 
+	Grafo(int V, int M, int W); 
+	void adicionarAresta(int v1, int v2, int cust); 
 };
 
 #endif
