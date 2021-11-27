@@ -9,5 +9,5 @@ using namespace std;
 #include <string>
 #include "grafo.hpp"
 
-bool arvore_precedencia (int n, int m, int W, Grafo g, string mensagem, int RA, int* pred, int* dist);
+bool arvore_precedencia (int n, int m, int W, Grafo g, string &mensagem, int RA, int* pred, int* dist);
 #endif

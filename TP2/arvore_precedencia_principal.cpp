@@ -48,7 +48,7 @@ Grafo criarGrafo(string file){
 }
 
 int main(){
-    string file = "nome-do-arquivo.txt";
+    string file = "teste_5_nos.txt";
 
 	Grafo grafo = criarGrafo(file);
 
@@ -58,7 +58,7 @@ int main(){
     string mensagem; // String que retorna algum erro no momento da criação da trilha.
     int RA = 233895; // RA do aluno que deve ser preenchido na função que irá criar.
 
-    bool tem_arvore = arvore_precedencia(grafo.V, grafo.M, grafo.W, grafo, &mensagem, RA, dist, pred);
+    bool tem_arvore = arvore_precedencia(grafo.V, grafo.M, grafo.W, grafo, mensagem, RA, pred, dist);
 
     if (RA == -1){
         cout<<"Erro: RA informado eh invalido."<<endl;
@@ -66,6 +66,13 @@ int main(){
         cout<<mensagem<<endl;
     }else{
         //Mostra a arvore de precedencia
+        for(int i = 0; i < grafo.V; i++){
+            if (i == (grafo.V-1)){
+                cout << pred[i] << endl;
+            }else{
+                cout << pred[i] << ' ';                
+            }
+        }
     }
 
     //Mostra o caminho minimo de cada vértice
