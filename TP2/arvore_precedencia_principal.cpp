@@ -13,33 +13,37 @@ hismael.costa@gmail.com
 #include <string>
 #include "grafo.hpp"
 #include "arvore_precedencia_ra233895.hpp"
+#define INF 0x3f3f3f3f
 using namespace std;
 
 // Leitura de um arquivo txt e retorno do grafo descrito neste arquivo.
-Grafo criarGrafo(string file){
+Grafo criarGrafo(string file)
+{
     ifstream inFile(file.c_str());
     string line;
 
     // Caso exista algum problema na leitura, um erro será disparado.
-    if(!inFile.is_open()){
+    if (!inFile.is_open())
+    {
         cout << "Erro: Problema na leitura do grafo." << endl;
-        return Grafo(0,0,0);
+        return Grafo(0, 0, 0);
     }
 
     getline(inFile, line);
-    istringstream ss(line); 
-    
+    istringstream ss(line);
+
     // Identificação da quantidade de vértices e arestas contidos na primeira linha do arquivo.
     int n, m, W;
     ss >> n >> m >> W;
 
     // Criação do objeto tipo Grafo.
-    Grafo grafo(n,m,W);
+    Grafo grafo(n, m, W);
 
-    while (getline(inFile, line)){
-        istringstream ss(line);     
+    while (getline(inFile, line))
+    {
+        istringstream ss(line);
         int v1, v2, cust;
-        ss >>  v1 >> v2 >> cust;
+        ss >> v1 >> v2 >> cust;
         // Criação das arestas contidas nas demais linhas do arquivo.
         grafo.adicionarAresta(v1, v2, cust);
     }
@@ -47,28 +51,42 @@ Grafo criarGrafo(string file){
     return grafo;
 }
 
-int main(){
+int main()
+{
     string file = "teste_6_nos.txt";
 
-	Grafo grafo = criarGrafo(file);
+    Grafo grafo = criarGrafo(file);
 
     //Inicializem as variáveis
     int pred[grafo.V]; // Lista contendo os vértices antes de v na árvore de precedência;
     int dist[grafo.M]; // Lista contendo a distância de s para v;
-    string mensagem; // String que retorna algum erro no momento da criação da trilha.
-    int RA = 233895; // RA do aluno que deve ser preenchido na função que irá criar.
+    string mensagem;   // String que retorna algum erro no momento da criação da trilha.
+    int RA = 233895;   // RA do aluno que deve ser preenchido na função que irá criar.
 
     bool tem_arvore = arvore_precedencia(grafo.V, grafo.M, grafo.W, grafo, mensagem, RA, pred, dist);
 
-    if (RA == -1){
-        cout<<"Erro: RA informado eh invalido."<<endl;
-    }else if(!tem_arvore){
-        cout<<mensagem<<endl;
-    }else{
+    if (RA == -1)
+    {
+        cout << "Erro: RA informado eh invalido." << endl;
+    }
+    else if (!tem_arvore)
+    {
+        cout << mensagem << endl;
+    }
+    else
+    {
         //Mostra o caminho minimo de cada vértice
-        for(int i = 0; i < grafo.V; i++){
-            cout << "Vértice " << i << ' ' << dist[i] << endl;
+        for (int i = 0; i < grafo.V; i++)
+        {
+            if (dist[i] == INF)
+            {
+                cout << "Vértice " << i << ' ' << INF << endl;
+            }
+            else
+            {
+                cout << "Vértice " << i << ' ' << dist[i] << endl;
             }
         }
-	return 0;
+    }
+    return 0;
 }
