@@ -19,11 +19,16 @@ using namespace std;
 
 bool arvore_precedencia(int n, int m, int W, Grafo g, string &mensagem, int RA, int *pred, int *dist)
 {
-    //inicializamos o vetor de visitados com o estado inicial de cada vetor sendo não visitado
+    //Um dos casos de teste de erro era se existia uma aresta com peso não inteiro
+    //Mas como a lista de pesos é declarada como de inteiros, não há essa possibilidade
+
+    //Assumimos que o vértice inicial s é sempre o vértice 0
+
+    //Inicializamos o vetor de visitados com o estado inicial de cada vetor sendo não visitado
     vector<bool> visitados(n, false);
-    //colocamos o estado inicial do predecessor de cada nó como não valido e a distância da origem até cada nó como sendo infinito
     for (int i = 0; i < n; i++)
     {
+        //colocamos o estado inicial do predecessor de cada nó como não valido e a distância da origem até cada nó como sendo infinito
         pred[i] = -1;
         dist[i] = INF;
     }
@@ -54,7 +59,8 @@ bool arvore_precedencia(int n, int m, int W, Grafo g, string &mensagem, int RA, 
                 int weight = (*curr).second;
                 //Como essa porção do código passa por todos os vértices alcançaveis por arestas
                 //Fazemos o teste se há algum peso inválido aqui, se ele estiver fora do intervalo (0,W)
-                if ((weight < 0) || (weight > W)){
+                if ((weight < 0) || (weight > W))
+                {
                     mensagem = "Erro: Existe peso fora do intervalo.";
                     return false;
                 }
