@@ -65,13 +65,10 @@ int main(){
     }else if(!tem_arvore){
         cout<<mensagem<<endl;
     }else{
-        //Mostra a arvore de precedencia
+        //Mostra o caminho minimo de cada vértice
         for(int i = 0; i < grafo.V; i++){
             cout << "Vértice " << i << ' ' << dist[i] << endl;
             }
         }
-
-    //Mostra o caminho minimo de cada vértice
-
 	return 0;
 }
