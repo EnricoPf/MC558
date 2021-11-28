@@ -48,7 +48,7 @@ Grafo criarGrafo(string file){
 }
 
 int main(){
-    string file = "teste_5_nos.txt";
+    string file = "teste_6_nos.txt";
 
 	Grafo grafo = criarGrafo(file);
 
@@ -67,13 +67,9 @@ int main(){
     }else{
         //Mostra a arvore de precedencia
         for(int i = 0; i < grafo.V; i++){
-            if (i == (grafo.V-1)){
-                cout << pred[i] << endl;
-            }else{
-                cout << pred[i] << ' ';                
+            cout << "Vértice " << i << ' ' << dist[i] << endl;
             }
         }
-    }
 
     //Mostra o caminho minimo de cada vértice
 

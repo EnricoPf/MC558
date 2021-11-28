@@ -27,7 +27,6 @@ bool arvore_precedencia(int n, int m, int W, Grafo g, string &mensagem, int RA, 
     }
     dist[0] = 0;
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> fila;
-
     fila.push(make_pair(dist[0], 0));
 
     while (!fila.empty())
@@ -48,10 +47,11 @@ bool arvore_precedencia(int n, int m, int W, Grafo g, string &mensagem, int RA, 
                 int weight = (*curr).second;
 
                 //relax (u,v)
-                if (dist[v] > (dist[u] + weight)){
+                if (dist[v] > (dist[u] + weight))
+                {
                     pred[v] = u;
                     dist[v] = dist[u] + weight;
-                    fila.push(make_pair(dist[v],v));
+                    fila.push(make_pair(dist[v], v));
                 }
             }
         }
